@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+/* Schemat postu */
 const postSchema = mongoose.Schema(
   {
     userId: {
@@ -26,6 +26,7 @@ const postSchema = mongoose.Schema(
       type: Array,
       default: [],
     },
+  
   },
   { timestamps: true }
 );

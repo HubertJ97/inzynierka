@@ -21,7 +21,7 @@ import {
   import Dropzone from "react-dropzone";
   import UserImage from "components/UserImage";
   import WidgetWrapper from "components/WidgetWrapper";
-  import { useState } from "react";
+  import {  useState } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import { setPosts } from "state";
   
@@ -45,7 +45,8 @@ import {
         formData.append("picture", image);
         formData.append("picturePath", image.name);
       }
-  
+   
+
       const response = await fetch(`http://localhost:3001/posts`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
@@ -55,14 +56,17 @@ import {
       dispatch(setPosts({ posts }));
       setImage(null);
       setPost("");
+      window.location.reload();
     };
+
+
   
     return (
       <WidgetWrapper>
         <FlexBetween gap="1.5rem">
           <UserImage image={picturePath} />
           <InputBase
-            placeholder="What's on your mind..."
+            placeholder="Stwórz post"
             onChange={(e) => setPost(e.target.value)}
             value={post}
             sx={{
@@ -96,7 +100,7 @@ import {
                   >
                     <input {...getInputProps()} />
                     {!image ? (
-                      <p>Add Image Here</p>
+                      <p>Dodaj zdjęcie</p>
                     ) : (
                       <FlexBetween>
                         <Typography>{image.name}</Typography>

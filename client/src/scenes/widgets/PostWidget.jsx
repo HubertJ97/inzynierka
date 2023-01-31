@@ -1,16 +1,19 @@
+/* eslint-disable */
 import {
     ChatBubbleOutlineOutlined,
     FavoriteBorderOutlined,
     FavoriteOutlined,
+    LineAxisOutlined,
     ShareOutlined,
   } from "@mui/icons-material";
-  import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+  import { Box, Divider, IconButton, Typography, useTheme, TextField, Button } from "@mui/material";
   import FlexBetween from "components/FlexBetween";
   import Friend from "components/Friend";
   import WidgetWrapper from "components/WidgetWrapper";
   import { useState } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import { setPost } from "state";
+  import axios from "axios";
   
   const PostWidget = ({
     postId,
@@ -23,7 +26,9 @@ import {
     likes,
     comments,
   }) => {
+    const accessId = window.localStorage.getItem("accessId")
     const [isComments, setIsComments] = useState(false);
+    const [ comment, setComment ] = useState("")
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
@@ -46,6 +51,31 @@ import {
       const updatedPost = await response.json();
       dispatch(setPost({ post: updatedPost }));
     };
+
+    const getPostUserId = () => {
+      window.localStorage.setItem("accessId" ,postUserId)
+    }
+
+    const sendComment = () => {
+      axios({
+        method: "post",
+        url: "http://localhost:3001/comment/add",
+        data: {
+          // userId: "63bc4a9d36cf8715651763ee",
+          userId: accessId,
+          comments: comment,
+        }
+      })
+      .then(({ data })=>{
+        if(data.ok){
+          console.log("Comment added")
+          
+        } else{
+          window.location.reload();
+          console.log(data)
+        }
+      })
+    }
   
     return (
       <WidgetWrapper m="2rem 0">
@@ -102,6 +132,16 @@ import {
                 </Typography>
               </Box>
             ))}
+           
+
+          <TextField onClick={getPostUserId} placeholder = "Dodaj komentarz"
+             value = { comment } onChange = {(e) =>{
+                setComment(e.currentTarget.value)
+              }} 
+            />
+
+            
+            <Button onClick={sendComment}>Dodaj</Button>
             <Divider />
           </Box>
         )}

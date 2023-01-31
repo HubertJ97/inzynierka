@@ -1,3 +1,4 @@
+import PetsIcon from '@mui/icons-material/Pets';
 import {
     ManageAccountsOutlined,
     EditOutlined,
@@ -72,7 +73,7 @@ import {
               >
                 {firstName} {lastName}
               </Typography>
-              <Typography color={medium}>{friends.length} friends</Typography>
+              <Typography color={medium}>{friends.length} Przyjaciele</Typography>
             </Box>
           </FlexBetween>
           <ManageAccountsOutlined />
@@ -87,7 +88,7 @@ import {
             <Typography color={medium}>{location}</Typography>
           </Box>
           <Box display="flex" alignItems="center" gap="1rem">
-            <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
+            <PetsIcon fontSize="large" sx={{ color: main }} />
             <Typography color={medium}>{occupation}</Typography>
           </Box>
         </Box>
@@ -97,13 +98,13 @@ import {
         {/* THIRD ROW */}
         <Box p="1rem 0">
           <FlexBetween mb="0.5rem">
-            <Typography color={medium}>Who's viewed your profile</Typography>
+            <Typography color={medium}>Wyświetlenia profilu</Typography>
             <Typography color={main} fontWeight="500">
               {viewedProfile}
             </Typography>
           </FlexBetween>
           <FlexBetween>
-            <Typography color={medium}>Impressions of your post</Typography>
+            <Typography color={medium}>Ilość polubień </Typography>
             <Typography color={main} fontWeight="500">
               {impressions}
             </Typography>
@@ -115,7 +116,7 @@ import {
         {/* FOURTH ROW */}
         <Box p="1rem 0">
           <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
-            Social Profiles
+            Profile społecznościowe
           </Typography>
   
           <FlexBetween gap="1rem" mb="0.5rem">

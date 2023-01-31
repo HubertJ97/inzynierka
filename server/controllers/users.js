@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 
-/* READ */
+/* Pobieranie informacji o jednym użytkowniku i liście znajomych */
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -30,7 +30,7 @@ export const getUserFriends = async (req, res) => {
   }
 };
 
-/* UPDATE */
+/* Dodawanie/Usuwanie przyjaciela */
 export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;

@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+/* Weryfikacja użytkownika */
 
 export const verifyToken = async (req, res, next) => {
   try {

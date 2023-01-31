@@ -56,7 +56,6 @@ const Form = () => {
   const isRegister = pageType === "register";
 
   const register = async (values, onSubmitProps) => {
-    // this allows us to send form info with image
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
@@ -131,7 +130,7 @@ const Form = () => {
             {isRegister && (
               <>
                 <TextField
-                  label="First Name"
+                  label="Imię"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.firstName}
@@ -143,7 +142,7 @@ const Form = () => {
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
-                  label="Last Name"
+                  label="Nazwisko"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.lastName}
@@ -153,7 +152,7 @@ const Form = () => {
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
-                  label="Location"
+                  label="Miejsce zamieszkania"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.location}
@@ -163,7 +162,7 @@ const Form = () => {
                   sx={{ gridColumn: "span 4" }}
                 />
                 <TextField
-                  label="Occupation"
+                  label="Ulubione zwierze"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.occupation}
@@ -196,7 +195,7 @@ const Form = () => {
                       >
                         <input {...getInputProps()} />
                         {!values.picture ? (
-                          <p>Add Picture Here</p>
+                          <p>Dodaj zdjęcie</p>
                         ) : (
                           <FlexBetween>
                             <Typography>{values.picture.name}</Typography>
@@ -221,7 +220,7 @@ const Form = () => {
               sx={{ gridColumn: "span 4" }}
             />
             <TextField
-              label="Password"
+              label="Hasło"
               type="password"
               onBlur={handleBlur}
               onChange={handleChange}
@@ -246,7 +245,7 @@ const Form = () => {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin ? "LOGIN" : "REGISTER"}
+              {isLogin ? "Zaloguj się" : "Zarejestruj"}
             </Button>
             <Typography
               onClick={() => {
@@ -263,8 +262,8 @@ const Form = () => {
               }}
             >
               {isLogin
-                ? "Don't have an account? Sign Up here."
-                : "Already have an account? Login here."}
+                ? "Nie masz konta? Załóż je!"
+                : "Masz już konto? Zaloguj się."}
             </Typography>
           </Box>
         </form>

@@ -2,8 +2,8 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
 
+/* Pobieranie i tworzenie postów */
 
-/* Stwórz post */
 
 export const createPost = async (req, res) => {
     try{
@@ -29,11 +29,11 @@ export const createPost = async (req, res) => {
     }
 }
 
-/* Odbierz post */
+
 
 export const getFeedPosts = async (req, res) => {
     try{
-        const post = await Post.find();
+        const post = await Post.find().sort({createdAt: -1});
         res.status(200).json(post);
     }catch(err){
         restart.status(404).json({ message: err.message })
@@ -43,7 +43,7 @@ export const getFeedPosts = async (req, res) => {
 export const getUserPosts = async (req, res) => {
     try{
         const { userId } = req.params;
-        const post = await Post.find ({ userId });
+        const post = await Post.find({ userId }).sort({createdAt: -1});
         res.status(200).json(post);
     }catch(err){
         restart.status(404).json({ message: err.message })
@@ -51,7 +51,7 @@ export const getUserPosts = async (req, res) => {
 }
 
 
-/* Dodaj komentarz */
+
 
 export const likePost = async (req, res) => {
     try{
