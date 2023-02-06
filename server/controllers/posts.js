@@ -44,6 +44,7 @@ export const getUserPosts = async (req, res) => {
     try{
         const { userId } = req.params;
         const post = await Post.find({ userId }).sort({createdAt: -1});
+        console.log("123123",post)
         res.status(200).json(post);
     }catch(err){
         restart.status(404).json({ message: err.message })

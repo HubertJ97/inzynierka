@@ -62,7 +62,8 @@ import {
         url: "http://localhost:3001/comment/add",
         data: {
           // userId: "63bc4a9d36cf8715651763ee",
-          userId: accessId,
+          // userId: accessId,
+          postId: postId,
           comments: comment,
         }
       })

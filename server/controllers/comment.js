@@ -7,7 +7,7 @@ import { z } from "zod"
 import Post from "../models/Post.js";
 
 const commentSchema = z.object({
-    userId: z.string(),
+    postId: z.string(),
     comments: z.string().min(5),
     // firstName: z.string(),
     // lastName: z.string(),
@@ -19,13 +19,15 @@ export const comment = async (req, res) => {
         return res.status(400).send({ message: validation.message });
     }
 
-    const { comments, userId,  } = validation.data;
+    const { comments, postId,  } = validation.data;
+    console.log("postId",postId)
     try {
         // const post = await Post.findOne({ where: { userId, firstName, lastName } });
-        const post = await Post.findOneAndUpdate({userId}, {$push: {comments: comments}}, {new: true});
+        const post = await Post.findOneAndUpdate({_id:postId}, {$push: {comments: comments}}, {new: true});
         if (!post) {
             return res.status(404).send({ message: "Post not found" });
         }
+        console.log("post",post)
         // post.comments.push(comments)
         // await post.save()
         return res.status(201).send({ message: "Comment created successfully" });
